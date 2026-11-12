@@ -207,7 +207,6 @@
 
     <button type="submit" id="submitBtn">/// Send it</button>
     <div class="msg" id="msg" role="status" aria-live="polite"></div>
-    <p class="privacy">Your details go only to the Priority Fitness Training coaching team. We never sell or share them.</p>
   </form>
 
   <div class="thanks" id="thanks" tabindex="-1">
@@ -237,7 +236,8 @@
   const otherInput = form.querySelector('[name=sourceOther]');
   const FOLLOW_UP = {
     'Other': ['Please tell us how you heard about us', 'Type it here'],
-    'Race or Event': ['Which race or event?', 'e.g. Brooklyn Half, NYC Marathon expo']
+    'Race or Event': ['Which race or event?', 'e.g. Brooklyn Half, NYC Marathon expo'],
+    'Park Slope neighbor': ['Tell us a bit more', 'e.g. your street, or how you found us']
   };
   sourceSel.addEventListener('change', () => {
     const f = FOLLOW_UP[sourceSel.value];
