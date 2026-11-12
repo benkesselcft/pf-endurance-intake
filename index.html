@@ -19,6 +19,7 @@
     --err: #ff7a7a;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0; background: var(--navy); color: var(--cream);
@@ -184,10 +185,13 @@
           <option>Instagram</option>
           <option>Google search</option>
           <option>Friend or client referral</option>
-          <option>Race or event</option>
+          <option>Race or Event</option>
           <option>Park Slope neighbor</option>
           <option>Other</option>
         </select>
+      </label>
+      <label id="sourceOtherWrap" hidden>Please tell us how you heard about us
+        <input type="text" name="sourceOther" maxlength="200" placeholder="Type it here">
       </label>
     </fieldset>
 
@@ -224,6 +228,10 @@
   const msg = document.getElementById('msg');
   const btn = document.getElementById('submitBtn');
 
+  const sourceSel = form.querySelector('[name=source]');
+  const otherWrap = document.getElementById('sourceOtherWrap');
+  sourceSel.addEventListener('change', () => { otherWrap.hidden = sourceSel.value !== 'Other'; });
+
   function setMsg(text, isErr) { msg.textContent = text; msg.className = 'msg' + (isErr ? ' err' : ''); }
 
   form.addEventListener('submit', async (e) => {
@@ -243,6 +251,9 @@
     for (const [k, v] of d.entries()) { if (k !== 'sports' && k !== 'website') payload.append(k, v); }
     payload.set('sports', d.getAll('sports').join(', '));
     payload.set('consent', 'Yes');
+    payload.delete('sourceOther');
+    const other = String(d.get('sourceOther') || '').trim();
+    if (d.get('source') === 'Other' && other) payload.set('source', 'Other: ' + other);
 
     btn.disabled = true; btn.textContent = 'Sending...';
     try {
