@@ -136,6 +136,9 @@
           <label class="chip"><input type="checkbox" name="sports" value="Other"><span>Other</span></label>
         </div>
       </label>
+      <label id="sportOtherWrap" hidden>Which other sport?
+        <input type="text" name="sportOther" maxlength="200" placeholder="e.g. Rowing, Ultra trail running">
+      </label>
       <div class="row">
         <label>Experience level
           <select name="experience" required>
@@ -242,6 +245,14 @@
     if (f) { otherLabel.textContent = f[0]; otherInput.placeholder = f[1]; } else { otherInput.value = ''; }
   });
 
+  const sportOtherBox = form.querySelector('[name=sports][value=Other]');
+  const sportOtherWrap = document.getElementById('sportOtherWrap');
+  const sportOtherInput = form.querySelector('[name=sportOther]');
+  sportOtherBox.addEventListener('change', () => {
+    sportOtherWrap.hidden = !sportOtherBox.checked;
+    if (!sportOtherBox.checked) sportOtherInput.value = '';
+  });
+
   function setMsg(text, isErr) { msg.textContent = text; msg.className = 'msg' + (isErr ? ' err' : ''); }
 
   form.addEventListener('submit', async (e) => {
@@ -259,7 +270,9 @@
 
     const payload = new URLSearchParams();
     for (const [k, v] of d.entries()) { if (k !== 'sports' && k !== 'website') payload.append(k, v); }
-    payload.set('sports', d.getAll('sports').join(', '));
+    const sportOther = String(d.get('sportOther') || '').trim();
+    payload.delete('sportOther');
+    payload.set('sports', d.getAll('sports').map(v => (v === 'Other' && sportOther) ? 'Other: ' + sportOther : v).join(', '));
     payload.set('consent', 'Yes');
     payload.delete('sourceOther');
     const other = String(d.get('sourceOther') || '').trim();
