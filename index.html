@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endurance Coaching Interest | Priority Fitness Training</title>
+<meta name="description" content="Tell us about your endurance goals. Remote coaching for runners, triathletes and cyclists from Priority Fitness Training, Park Slope, Brooklyn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-2: #12264a;
+    --lime: #CCFF00;
+    --pink: #FF139B;
+    --cream: #F7E7CE;
+    --mist: #E0E6ED;
+    --err: #ff7a7a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--navy); color: var(--cream);
+    font-family: 'Space Grotesk', Arial, sans-serif; line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 20px 0 16px; border-bottom: 4px solid var(--lime); }
+  header .wrap { display: flex; align-items: center; gap: 14px; }
+  .logo { width: 56px; height: 56px; border-radius: 50%; background: var(--cream); padding: 4px; flex: none; }
+  .brand { font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: .02em; font-size: 1.15rem; line-height: 1.1; color: var(--mist); }
+  .brand b { color: var(--pink); font-weight: 700; }
+  .tag { font-size: .8rem; color: var(--cream); opacity: .8; }
+  h1 {
+    font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase;
+    color: var(--mist); font-size: clamp(2rem, 7vw, 3.2rem); line-height: 1.05; margin: 36px 0 12px;
+  }
+  h1 span { color: var(--pink); }
+  .lede { font-size: 1.1rem; max-width: 56ch; margin: 0 0 8px; }
+  .sub { opacity: .8; font-size: .95rem; margin: 0 0 28px; }
+  form { background: var(--navy-2); border: 1px solid rgba(247,231,206,.25); border-radius: 12px; padding: 24px 20px; margin-bottom: 48px; }
+  fieldset { border: 0; padding: 0; margin: 0 0 26px; }
+  legend {
+    font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase;
+    color: var(--lime); font-size: 1.1rem; letter-spacing: .03em; padding: 0 0 10px; width: 100%;
+    border-bottom: 1px solid rgba(247,231,206,.2); margin-bottom: 14px;
+  }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+  label { display: block; font-weight: 500; font-size: .92rem; margin: 0 0 14px; color: var(--mist); }
+  label .opt { opacity: .6; font-weight: 400; }
+  input[type=text], input[type=email], input[type=tel], input[type=date], input[type=number], select, textarea {
+    width: 100%; margin-top: 6px; padding: 12px; font: inherit; font-size: 1rem; color: var(--navy);
+    background: var(--cream); border: 2px solid transparent; border-radius: 8px;
+  }
+  textarea { min-height: 96px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--lime); box-shadow: 0 0 0 3px rgba(204,255,0,.35); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .chip { margin: 0; }
+  .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip span {
+    display: inline-block; padding: 9px 16px; border: 2px solid var(--cream); border-radius: 999px;
+    cursor: pointer; font-weight: 500; color: var(--cream); user-select: none;
+  }
+  .chip input:checked + span { background: var(--pink); border-color: var(--pink); color: #fff; }
+  .chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(204,255,0,.6); }
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: .88rem; }
+  .consent input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--pink); flex: none; }
+  button {
+    font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase;
+    font-size: 1.15rem; letter-spacing: .04em; cursor: pointer;
+    background: var(--lime); color: var(--navy); border: 0; border-radius: 8px; padding: 15px 28px; width: 100%;
+  }
+  button:hover { filter: brightness(1.06); }
+  button:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+  button[disabled] { opacity: .6; cursor: wait; }
+  .hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+  .msg { margin-top: 14px; font-weight: 500; min-height: 1.4em; }
+  .msg.err { color: var(--err); }
+  .thanks { display: none; text-align: center; padding: 48px 20px; background: var(--navy-2); border: 1px solid rgba(247,231,206,.25); border-radius: 12px; margin-bottom: 48px; }
+  .thanks h2 { font-family: 'Kanit', Arial, sans-serif; font-style: italic; text-transform: uppercase; color: var(--lime); font-size: 2rem; margin: 0 0 8px; }
+  footer { border-top: 4px solid var(--lime); padding: 20px 0 36px; font-size: .88rem; text-align: center; }
+  footer a { color: var(--lime); }
+  .privacy { font-size: .8rem; opacity: .75; margin-top: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img class="logo" src="assets/logo-black.png" alt="Priority Fitness Training logo">
+    <div>
+      <div class="brand">Priority <b>Fitness</b> Training</div>
+      <div class="tag">Train With Confidence</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Endurance <span>Coaching</span></h1>
+  <p class="lede">Whether it's your first half marathon or your next Ironman, tell us where you are and where you're headed. A coach will follow up personally.</p>
+  <p class="sub">Remote coaching through TrainingPeaks. Pro-level pedigree. Built around you.</p>
+
+  <form id="intake" novalidate>
+    <fieldset>
+      <legend>About you</legend>
+      <div class="row">
+        <label>First name
+          <input type="text" name="firstName" autocomplete="given-name" required>
+        </label>
+        <label>Last name
+          <input type="text" name="lastName" autocomplete="family-name" required>
+        </label>
+      </div>
+      <div class="row">
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Phone <span class="opt">(optional)</span>
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+      </div>
+      <label>Where do you live? <span class="opt">(city / state)</span>
+        <input type="text" name="location" autocomplete="address-level2">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your sport</legend>
+      <label>Which disciplines interest you?
+        <div class="chips" role="group" aria-label="Disciplines">
+          <label class="chip"><input type="checkbox" name="sports" value="Running"><span>Running</span></label>
+          <label class="chip"><input type="checkbox" name="sports" value="Triathlon"><span>Triathlon</span></label>
+          <label class="chip"><input type="checkbox" name="sports" value="Cycling"><span>Cycling</span></label>
+          <label class="chip"><input type="checkbox" name="sports" value="Swimming"><span>Swimming</span></label>
+          <label class="chip"><input type="checkbox" name="sports" value="Other"><span>Other</span></label>
+        </div>
+      </label>
+      <div class="row">
+        <label>Experience level
+          <select name="experience" required>
+            <option value="">Select one</option>
+            <option>Brand new to endurance</option>
+            <option>Beginner (under 1 year)</option>
+            <option>Intermediate (1 to 3 years)</option>
+            <option>Advanced (3+ years)</option>
+            <option>Elite / competitive</option>
+          </select>
+        </label>
+        <label>Current weekly training
+          <select name="weeklyHours">
+            <option value="">Select one</option>
+            <option>Not training right now</option>
+            <option>Under 3 hours</option>
+            <option>3 to 6 hours</option>
+            <option>6 to 10 hours</option>
+            <option>10+ hours</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your goal</legend>
+      <label>What are you training for?
+        <input type="text" name="goalRace" placeholder="e.g. NYC Marathon, Ironman 70.3, general fitness">
+      </label>
+      <div class="row">
+        <label>Goal date <span class="opt">(if you have one)</span>
+          <input type="date" name="goalDate">
+        </label>
+        <label>Past event results / PRs <span class="opt">(optional)</span>
+          <input type="text" name="pr" placeholder="e.g. Half marathon 1:52">
+        </label>
+      </div>
+      <label>Injuries or limitations we should know about <span class="opt">(optional)</span>
+        <textarea name="injuries"></textarea>
+      </label>
+      <label>Anything else you'd like your coach to know? <span class="opt">(optional)</span>
+        <textarea name="notes"></textarea>
+      </label>
+      <label>How did you hear about us?
+        <select name="source">
+          <option value="">Select one</option>
+          <option>Instagram</option>
+          <option>Google search</option>
+          <option>Friend or client referral</option>
+          <option>Race or event</option>
+          <option>Park Slope neighbor</option>
+          <option>Other</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <label class="consent">
+      <input type="checkbox" name="consent" required>
+      <span>I agree that Priority Fitness Training may contact me about endurance coaching and store the information I've shared for that purpose.</span>
+    </label>
+
+    <button type="submit" id="submitBtn">/// Send it</button>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    <p class="privacy">Your details go only to the Priority Fitness Training coaching team. We never sell or share them.</p>
+  </form>
+
+  <div class="thanks" id="thanks" tabindex="-1">
+    <h2>You're in.</h2>
+    <p>Thanks for reaching out. A Priority Fitness coach will be in touch soon.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Priority Fitness Training · 339 5th Street, Park Slope, Brooklyn, NY 11215<br>
+    <a href="tel:+13472234072">(347) 223-4072</a> · <a href="mailto:info@priorityfitnesstraining.com">info@priorityfitnesstraining.com</a>
+  </div>
+</footer>
+
+<script>
+  // Paste your Google Apps Script Web App URL here (see README.md).
+  const ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  const form = document.getElementById('intake');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('submitBtn');
+
+  function setMsg(text, isErr) { msg.textContent = text; msg.className = 'msg' + (isErr ? ' err' : ''); }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setMsg('');
+    const d = new FormData(form);
+    if (d.get('website')) return; // honeypot: bots only
+    const need = ['firstName', 'lastName', 'email', 'experience'];
+    for (const k of need) {
+      if (!String(d.get(k) || '').trim()) { setMsg('Please fill in the required fields.', true); form.querySelector(`[name=${k}]`).focus(); return; }
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.get('email'))) { setMsg('Please enter a valid email address.', true); return; }
+    if (!d.get('consent')) { setMsg('Please tick the consent box so we can contact you.', true); return; }
+    if (ENDPOINT.startsWith('PASTE_')) { setMsg('Form is not connected yet. See README.md.', true); return; }
+
+    const payload = new URLSearchParams();
+    for (const [k, v] of d.entries()) { if (k !== 'sports' && k !== 'website') payload.append(k, v); }
+    payload.set('sports', d.getAll('sports').join(', '));
+    payload.set('consent', 'Yes');
+
+    btn.disabled = true; btn.textContent = 'Sending...';
+    try {
+      // no-cors: Apps Script doesn't send CORS headers; the request still arrives.
+      await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: payload });
+      form.style.display = 'none';
+      const t = document.getElementById('thanks'); t.style.display = 'block'; t.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      setMsg('Something went wrong. Please try again or email info@priorityfitnesstraining.com.', true);
+      btn.disabled = false; btn.textContent = '/// Send it';
+    }
+  });
+</script>
+</body>
+</html>
