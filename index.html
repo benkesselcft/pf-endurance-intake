@@ -28,10 +28,10 @@
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
   header { padding: 20px 0 16px; border-bottom: 4px solid var(--lime); }
   header .wrap { display: flex; align-items: center; gap: 14px; }
-  .logo { width: 64px; height: 64px; border-radius: 12px; flex: none; display: block; }
-  .brand { font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: .02em; font-size: 1.15rem; line-height: 1.1; color: var(--mist); }
+  .logo { width: 84px; height: 84px; border-radius: 12px; flex: none; display: block; }
+  .brand { font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: .02em; font-size: clamp(1.5rem, 5.5vw, 2.3rem); line-height: 1.05; color: var(--mist); }
   .brand b { color: var(--pink); font-weight: 700; }
-  .tag { font-size: .8rem; color: var(--cream); opacity: .8; }
+  .tag { font-size: .95rem; margin-top: 2px; color: var(--cream); opacity: .8; }
   h1 {
     font-family: 'Kanit', Arial, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase;
     color: var(--mist); font-size: clamp(2rem, 7vw, 3.2rem); line-height: 1.05; margin: 36px 0 12px;
@@ -97,7 +97,7 @@
 </header>
 
 <main class="wrap">
-  <h1>Endurance <span>Coaching</span></h1>
+  <h1>Athlete <span>Intake</span></h1>
   <p class="lede">Whether it's your first half marathon or your next Ironman, tell us where you are and where you're headed. A coach will follow up personally.</p>
   <p class="sub">Remote coaching through TrainingPeaks. Pro-level pedigree. Built around you.</p>
 
@@ -190,7 +190,7 @@
           <option>Other</option>
         </select>
       </label>
-      <label id="sourceOtherWrap" hidden>Please tell us how you heard about us
+      <label id="sourceOtherWrap" hidden><span id="sourceOtherLabel">Please tell us how you heard about us</span>
         <input type="text" name="sourceOther" maxlength="200" placeholder="Type it here">
       </label>
     </fieldset>
@@ -230,7 +230,17 @@
 
   const sourceSel = form.querySelector('[name=source]');
   const otherWrap = document.getElementById('sourceOtherWrap');
-  sourceSel.addEventListener('change', () => { otherWrap.hidden = sourceSel.value !== 'Other'; });
+  const otherLabel = document.getElementById('sourceOtherLabel');
+  const otherInput = form.querySelector('[name=sourceOther]');
+  const FOLLOW_UP = {
+    'Other': ['Please tell us how you heard about us', 'Type it here'],
+    'Race or Event': ['Which race or event?', 'e.g. Brooklyn Half, NYC Marathon expo']
+  };
+  sourceSel.addEventListener('change', () => {
+    const f = FOLLOW_UP[sourceSel.value];
+    otherWrap.hidden = !f;
+    if (f) { otherLabel.textContent = f[0]; otherInput.placeholder = f[1]; } else { otherInput.value = ''; }
+  });
 
   function setMsg(text, isErr) { msg.textContent = text; msg.className = 'msg' + (isErr ? ' err' : ''); }
 
@@ -253,7 +263,7 @@
     payload.set('consent', 'Yes');
     payload.delete('sourceOther');
     const other = String(d.get('sourceOther') || '').trim();
-    if (d.get('source') === 'Other' && other) payload.set('source', 'Other: ' + other);
+    if (FOLLOW_UP[d.get('source')] && other) payload.set('source', d.get('source') + ': ' + other);
 
     btn.disabled = true; btn.textContent = 'Sending...';
     try {
